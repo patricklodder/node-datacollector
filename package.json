@@ -1,0 +1,13 @@
+{
+	"name": "ibzdatacollector",
+	"version": "0.0.1",
+	"description": "Asynchronous data collector",
+	"author": "Patrick Lodder",
+	"engines": {
+		"node": "= 0.4.12"
+	},
+	"directories": {
+		"lib": "./lib"
+	},
+	"main": "./lib/datacollector.js"
+}
