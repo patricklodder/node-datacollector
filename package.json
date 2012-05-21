@@ -1,5 +1,5 @@
 {
-	"name": "ibzdatacollector",
+	"name": "datacollector",
 	"version": "0.0.1",
 	"description": "Asynchronous data collector",
 	"author": "Patrick Lodder",
