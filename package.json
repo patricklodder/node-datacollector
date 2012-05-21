@@ -1,10 +1,10 @@
 {
 	"name": "datacollector",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Asynchronous data collector",
 	"author": "Patrick Lodder",
 	"engines": {
-		"node": ">0.4.12"
+		"node": ">=0.4.12"
 	},
 	"directories": {
 		"lib": "./lib"
