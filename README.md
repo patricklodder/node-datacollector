@@ -1,6 +1,7 @@
 Collects data from several async calls and pushes them out through a 'ready' event.
 
 Example Usage (unnamed):
+
 	var DataCollector = require('datacollector');
 	
 	var dc = new DataCollector(2);
@@ -14,6 +15,7 @@ Example Usage (unnamed):
 	// ['1st', '2nd']
 
 Example Usage (named):
+
 	var DataCollector = require('datacollector');
 	
         var dc = new DataCollector(['1st', '2nd']);
