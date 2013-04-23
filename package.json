@@ -1,6 +1,6 @@
 {
   "name": "datacollector",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Asynchronous data collector",
   "author": "Patrick Lodder",
   "repository": {
