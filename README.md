@@ -1,6 +1,8 @@
 DataCollector
 =============
 
+[![Build Status](https://secure.travis-ci.org/patricklodder/node-datacollector.png)](http://travis-ci.org/patricklodder/node-datacollector)
+
 (C) Patrick Lodder 2012, Licensed under the MIT-LICENSE
 
 Collects data from one to many async calls and pushes out events based on the data collected.
