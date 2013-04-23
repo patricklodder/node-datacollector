@@ -22,7 +22,6 @@ vows.describe("DataCollector").addBatch({
 			topic: function (functions) {
 				var keys = Object.keys(functions), dc = new DataCollector(keys), t = this;
 				dc.on('complete', this.callback);
-				dc.on('complete', console.log)
 				keys.forEach(function (k) { functions[k](collectorCallback(dc, k))});
 			}
 			, "no error must be returned": function (e, d) {
