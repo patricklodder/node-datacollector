@@ -58,6 +58,7 @@ Passing an array as the first argument will collect named values, passing a numb
 * `complete: (error, collection)` - Error-intolerant event that will fire when the collection is completed or the first collected Error
 * `ready: (collection)` - Error-tolerant event that will fire when the collection is completed, regardless of collected Errors
 * `err: (key, error)` - Fires whenever an instance of Error has been collected
+* `collected: (key, value)` - Fires every time an item is collected. Key can be either the key name or the candidate index where the value will be stored anonymously.  
 * `[key]: (value)` - During named collection, fires after `key` has been collected
 
 Running the tests
