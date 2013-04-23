@@ -206,6 +206,53 @@ vows.describe("DataCollector").addBatch({
 				assert.equal(dc.state, 'errored_final');
 			}
 		}
+		, "when retrieving the first value after collection": {
+			topic: function (functions) {
+				var keys = Object.keys(functions)
+					, dc = new DataCollector(keys)
+					, t = this;
+				keys.forEach(function (k) { functions[k](collectorCallback(dc, k))});
+				dc.get('first', function (e, d) { t.callback(e, d); });
+			}
+			, "should return the collected error": function (e, d) {
+				assert.ok(e instanceof Error);
+				assert.equal(e.message, '1st error')
+			}
+			, "should not return the value": function (e, d) {
+				assert.ok(d === undefined);
+			}
+		}
+		, "when retrieving the first value before collection": {
+			topic: function (functions) {
+				var keys = Object.keys(functions)
+					, dc = new DataCollector(keys)
+					, t = this;
+				dc.get('first', function (e, d) { t.callback(e, d); });
+				keys.forEach(function (k) { functions[k](collectorCallback(dc, k))});
+			}
+			, "should return the collected error": function (e, d) {
+				assert.ok(e instanceof Error);
+				assert.equal(e.message, '1st error')
+			}
+			, "should not return the value": function (e, d) {
+				assert.ok(d === undefined);
+			}
+		}
+		, "when retrieving the first value on an anonymous collection": {
+			topic: function (functions) {
+				var keys = Object.keys(functions)
+					, dc = new DataCollector(keys.length)
+					, t = this;
+				dc.get('first', function (e, d) { t.callback(e, d); });
+			}
+			, "should not return the collected error": function (e, d) {
+				assert.ok(e instanceof Error);
+				assert.notEqual(e.message, '1st error');
+			}
+			, "should not return the value": function (e, d) {
+				assert.ok(d === undefined);
+			}
+		}
 	}
 }).addBatch({
 	"Given 1 erroring async function": {
