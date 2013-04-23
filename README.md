@@ -16,7 +16,7 @@ INSTALL
 	var DataCollector = require('datacollector');
 	
 	var dc = new DataCollector(2);
-	dc.on('complete', function(data) {
+	dc.on('complete', function(err, data) {
 		console.log(JSON.stringify(data));
 	});
 	
@@ -30,7 +30,7 @@ INSTALL
 	var DataCollector = require('datacollector');
 	
 	var dc = new DataCollector(['1st', '2nd']);
-	dc.on('complete', function(data) {
+	dc.on('complete', function(err, data) {
 		console.log(JSON.stringify(data));
 	});	
 
