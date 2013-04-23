@@ -51,7 +51,7 @@ Passing an array as the first argument will collect named values, passing a numb
 #### Methods
 
 * `dc.collect([/* string */ key ,] value);` - collect a value, optionally preceeded by a key name for named collections
-* `dc.on(/* string */ key, /* function */ callback /* ( error, value ) */);` - retrieve a value from the collection. Executes immediately when the value is already collected, otherwise it calls the callback on collection of the value. Returns an error if the collected value is an instance of Error or when calling this on an anonymous collector.
+* `dc.get(/* string */ key, /* function */ callback /* ( error, value ) */);` - retrieve a value from the collection. Executes immediately when the value is already collected, otherwise it calls the callback on collection of the value. Returns an error if the collected value is an instance of Error or when calling this on an anonymous collector.
 
 #### Events
 
