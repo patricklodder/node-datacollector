@@ -45,6 +45,21 @@ dc.collect('2nd', 'second');
 // {'1st': 'first', '2nd': 'second'}
 ```
 
+#### Timing out
+
+```javascript
+var DataCollector = require('datacollector');
+
+var dc = new DataCollector(['1st', '2nd']).timeout(50);
+dc.on('complete', function(err, data) {
+	console.log(err.message, JSON.stringify(data));
+});
+
+dc.collect('1st', 'first');
+
+// "timed out", {'1st': 'first'}
+```
+
 #### Anonymous Parallel Processor
 
 ```javascript
@@ -83,12 +98,24 @@ instantiates a new data collector
 Passing an array as the first argument will collect named values in an object, passing a number will record values anonymously in an array.
 
 ### Methods
+#### dc.timeout(milliseconds)
+Error out after ```milliseconds``` amount of time. Overrides previous timeouts.
+
+* key: ```milliseconds``` - amount of milliseconds that collection must complete within.
+
+Chainable command, returns self.
+
 #### dc.collect(key, value)
 Collect a value
 
 * key: ```string``` - key to collect, optional
 * value: ```any``` - the value to collect
 
+#### dc.error(key, value)
+Collect an error for a key
+
+* key: ```string``` - key to collect, optional
+* value: ```Error``` - the error to collect
 
 #### dc.get(key, callback)
 Retrieve a value from the collection. Executes ```callback``` immediately when the value is already collected, otherwise it calls the callback on collection of the value. Returns an error if the collected value is an instance of Error or when calling this on an anonymous collector.

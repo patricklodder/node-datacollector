@@ -61,19 +61,22 @@ vows.describe("DataCollector").addBatch({
 		}
 		, "when only one function is executed": {
 			topic: function (functions) {
-				var keys = Object.keys(functions), dc = new DataCollector(keys), t = this;
-				dc.on('complete', this.callback);
+				var keys = Object.keys(functions),
+				    dc = new DataCollector(keys).timeout(50),
+						t = this;
+				dc.on('complete', function (e,d) {
+					t.callback(e,d,dc);
+				});
 				functions.first(collectorCallback(dc, 'first'));
-				setTimeout(function () {t.callback(new Error('timeout'), dc)}, 50);
 			}
-			, "no results must be returned before timeout": function (e, dc) {
+			, "no results must be returned before timeout": function (e, d, dc) {
 				assert.ok(e instanceof Error);
-				assert.equal(e.message, 'timeout');
+				assert.equal(e.message, 'timed out');
 			}
-			, "the DataCollector state must be 'collecting'": function (e, dc) {
-				assert.equal(dc.state,'collecting')
+			, "the DataCollector state must be 'errored'": function (e, d, dc) {
+				assert.equal(dc.state,'errored')
 			}
-			, "the DataCollector must have 1 collected element": function (e, dc) {
+			, "the DataCollector must have 1 collected element": function (e, d, dc) {
 				assert.equal(Object.keys(dc.items).length, 1);
 			}
 		}
