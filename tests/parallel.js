@@ -1,6 +1,3 @@
-var vows = require('vows');
-var assert = require('assert');
-
 var test = require('tape');
 var parallel = require('../lib/parallel');
 
