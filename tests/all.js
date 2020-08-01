@@ -64,9 +64,15 @@ vows.describe("DataCollector").addBatch({
 				var keys = Object.keys(functions),
 				    dc = new DataCollector(keys).timeout(50),
 						t = this;
+
+				dc.on('timeout', function () {
+					dc._HAS_TIMED_OUT = true;
+				});
+
 				dc.on('complete', function (e,d) {
 					t.callback(e,d,dc);
 				});
+
 				functions.first(collectorCallback(dc, 'first'));
 			}
 			, "no results must be returned before timeout": function (e, d, dc) {
@@ -74,7 +80,10 @@ vows.describe("DataCollector").addBatch({
 				assert.equal(e.message, 'timed out');
 			}
 			, "the DataCollector state must be 'errored'": function (e, d, dc) {
-				assert.equal(dc.state,'errored')
+				assert.equal(dc.state,'errored');
+			}
+			, "a timeout event must have been emitted": function (e, d, dc) {
+				assert.ok(dc._HAS_TIMED_OUT);
 			}
 			, "the DataCollector must have 1 collected element": function (e, d, dc) {
 				assert.equal(Object.keys(dc.items).length, 1);
