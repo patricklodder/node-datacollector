@@ -19,9 +19,9 @@
     "test": "./tests"
   },
   "devDependencies": {
-    "vows": "0.7.x"
+    "tape": "^5.0.1"
   },
   "scripts": {
-    "test": "node_modules/.bin/vows tests/*.js"
+    "test": "node tests/datacollector.js && node tests/parallel.js"
   }
 }
